@@ -8,8 +8,9 @@
         <a type="button" class="btn btn-success mb-2" href="{{route('dealer.create')}}">+ Create</a>
     </div>
     <div class="col-6">
-        <form class="form-inline my-2 my-lg-0 " style="float: right">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0 " style="float: right" method="get">
+            <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            value="{{session()->get('search')}}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -38,10 +39,10 @@
         <td>{{$dealer->email}}</td>
         <td>{{$dealer->address}}</td>
         <td>{{$dealer->manager_name}}</td>
-        <td width="100px">{{$dealer->status->name}}</td>
+        <td>{{$dealer->status->name}}</td>
         <td width="180px">
             <a type="button" class="btn btn-success" href="{{route('dealer.edit',$dealer->id)}}">Edit</a>
-            <a type="button" class="btn btn-danger" href="">Delete</a>
+            <a onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger" href="{{route('dealer.delete',$dealer->id)}}">Delete</a>
         </td>
     </tr>
     @endforeach
